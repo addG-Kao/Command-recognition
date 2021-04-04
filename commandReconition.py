@@ -81,18 +81,7 @@ def HMMTrain(dataset):
     
     return hmmModels
 
-if __name__ == '__main__':
-    f_train = [file_Number for file_Number in os.listdir(train_dir)]
-    
-    trainDataset = buildDataset(train_dir, f_train)
-    
-
-    print("Finish prepare the training data")
-    hmmModels = HMMTrain(trainDataset)
-    
-    f_test = [file_Number for file_Number in os.listdir(test_dir)]
-    testDataSet = buildDataset(test_dir, f_test)
-    
+def dataTest():
     correctCnt = 0 # 記錄對的次數
     totalCnt = 0 
     for trueLabel in testDataSet.keys():
@@ -119,4 +108,19 @@ if __name__ == '__main__':
             
             print("predict result :", int(idx) == int(trueLabel))
     print(round(correctCnt*100/totalCnt,3), '%');
+
+if __name__ == '__main__':
+    f_train = [file_Number for file_Number in os.listdir(train_dir)]
+    
+    trainDataset = buildDataset(train_dir, f_train)
+    
+
+    print("Finish prepare the training data")
+    hmmModels = HMMTrain(trainDataset)
+    
+    f_test = [file_Number for file_Number in os.listdir(test_dir)]
+    testDataSet = buildDataset(test_dir, f_test)
+    
+    dataTest()
+   
     
