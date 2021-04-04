@@ -20,6 +20,10 @@ def readFile(tmp_dir,dir_num):
     for getfile in wav_data:
         # print(time,num)
         if getfile.endswith(".wav"):  #判斷是否為wav檔
+            #長度處理從這兒開始
+            
+            
+            # 計算總時間
             time += librosa.get_duration(filename = dir+"/"+getfile)
             num += 1
     # print(time/num, "\n")        
