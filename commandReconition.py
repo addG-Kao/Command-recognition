@@ -90,16 +90,16 @@ def dataTest():
             
             print("True label: {}; Predict Score: ".format(trueLabel), end='')
             
-            prob_list = []
+            prob_list = {}
             for predLabel in hmmModels.keys():
                 model = hmmModels[predLabel]
                 score = model.score(testData)
                 
                 # Output the resule
                 print("{:.02f} ".format(score), end='')
-                prob_list.append(score)
+                prob_list[int(predLabel)] = score
             idx = 0
-            for i in range(len(prob_list)):
+            for i in (prob_list):
                 if prob_list[i] > prob_list[idx]:
                     idx = i
             if(idx) == int(trueLabel):
