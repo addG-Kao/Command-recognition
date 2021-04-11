@@ -3,7 +3,7 @@ import librosa
 import math
 from ffmpeg import audio
 
-train_dir = os.getcwd() + '/test'
+train_dir = os.getcwd() + '/train'
 
 # utility
 #   讀取檔案
@@ -32,7 +32,7 @@ def readFile(tmp_dir,dir_num):
 # output
 #   以檔案形式輸出
 def fileProcess(tmp_dir,dir_num,goal_time):
-    goal_dir = os.getcwd()+'/adapt_test/'+dir_num
+    goal_dir = os.getcwd()+'/adapt_train/'+dir_num
     if not os.path.isdir(goal_dir):
         os.makedirs(goal_dir)
     print(goal_dir)
