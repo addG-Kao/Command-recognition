@@ -81,7 +81,7 @@ def HMMTrain(dataset):
     
     return hmmModels
 
-def dataTest():
+def dataTest(testDataSet, hmmModels):
     correctCnt = 0 # 記錄對的次數
     totalCnt = 0 
     for trueLabel in testDataSet.keys():
@@ -107,9 +107,11 @@ def dataTest():
             totalCnt = totalCnt+1
             
             print("predict result :", int(idx) == int(trueLabel))
-    print(round(correctCnt*100/totalCnt,3), '%');
+    print(round(correctCnt*100/totalCnt,3), '%')
+    with open("result.txt", "a") as file:
+        file.write("%f%%\n"%(round(correctCnt*100/totalCnt,3)) )
 
-if __name__ == '__main__':
+def main():
     f_train = [file_Number for file_Number in os.listdir(train_dir)]
     
     trainDataset = buildDataset(train_dir, f_train)
@@ -121,6 +123,8 @@ if __name__ == '__main__':
     f_test = [file_Number for file_Number in os.listdir(test_dir)]
     testDataSet = buildDataset(test_dir, f_test)
     
-    dataTest()
+    dataTest(testDataSet, hmmModels)
    
-    
+if __name__ == '__main__':
+    for i in range(10):
+        main()
